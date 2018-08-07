@@ -114,7 +114,7 @@ $(document).ready(function(){
                 document.getElementById("date").value = data.FechaDePrimeraEntrega;
                 document.getElementById("turnoId").value = data.Turno[0].id;
                 document.getElementById("tipoDeEntregaId").value = data.TipoDeEntrega;
-                document.getElementById("monedaId").value = data.Moneda[0].id;
+                document.getElementById("monedaId").value = data.Moneda == "" ? 1 :  data.Moneda[0].id;
                 document.getElementById("formaDePago").value = data.FormaDePago;
                 $('.selectpicker').selectpicker();
                 $('#turnoId').selectpicker('val',data.Turno[0].id);
