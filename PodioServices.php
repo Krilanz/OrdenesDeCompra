@@ -72,8 +72,8 @@ if(isset($_GET['GetProductos']))
     // Output the title of each item
     foreach ($collection as $item) {
         $attributes = array();
-        $attributes['Id'] =  $item->item_id ;
-        $attributes['Descripcion'] =  $item->title ;
+        $attributes['Id'] =  $item->item_id ;        
+        $attributes['Descripcion'] =  $item->fields["codigo"]  == null ? "" . $item->title  : $item->fields["codigo"]-> values . " - " . $item->title ;
         $items[] = $attributes;
     }
     
@@ -285,7 +285,12 @@ if(isset($_POST['submit']))
     
     
      $_SESSION['NuevaFactura'] = 1;
-     header("Location: http://dimex.innen.com.ar/OCVendedores/ordenesDeCompra.php?NuevaFactura=1");
+     if($esTest){
+        header("Location: http://dimex.innen.com.ar/OCVendedoresTest/ordenesDeCompra.php?NuevaFactura=1"); 
+     }else{
+        header("Location: http://dimex.innen.com.ar/OCVendedores/ordenesDeCompra.php?NuevaFactura=1");
+     }
+     
 } 
 
 ?>

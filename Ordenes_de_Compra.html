@@ -29,7 +29,7 @@
 <script src="https://unpkg.com/promise-polyfill@7.1.0/dist/promise.min.js"></script>
 
 <link href="css/form-designer-style.css" rel="stylesheet" type="text/css">
-<script  src="js/gridfunction.js" type="text/javascript"></script>
+<script  src="function.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />     
@@ -103,13 +103,18 @@
       //alert(place.place_id);
          //codeAddress(document.getElementById('autocomplete').value);
     }
-      
+    
+    function guardando() {
+      document.getElementById('input_2').readonly=true;
+      swal("Guardando, por favor espere..."); 
+      swal.showLoading();
+  }
 </script>
 
 
 </head>
 <body>
-<form class="jotform-form" method="post" action="PodioServices.php" name="form_80705003129648" accept-charset="utf-8">
+<form class="jotform-form" method="post" action="PodioServices.php" name="form_80705003129648" accept-charset="utf-8" onsubmit="guardando(this);">
   <input type="hidden" name="formID" value="80705003129648" />
   <div class="form-all">
 
@@ -163,7 +168,7 @@
           <input type="text" id="lugarDeEntrega" name="lugarDeEntrega" data-type="input-textbox"  class="form-control" style="width:200px;"  size="5" value="" data-component="textbox" />
         </div>-->
         <div id="locationField" class="form-input-wide">
-          <input id="lugarDeEntrega" class="form-control" name="lugarDeEntrega" placeholder="" type="text" />
+          <input id="lugarDeEntrega" class="form-control" name="lugarDeEntrega" placeholder="" type="text" style="width: 250px;"/>
         </div>
       </li>
       
@@ -381,7 +386,7 @@
       <li class="form-line" data-type="control_button" id="id_2">
         <div id="cid_2" class="form-input-wide">
           <div style="margin-left:156px;" class="form-buttons-wrapper">
-            <button id="input_2" name="submit" type="submit" value="submit" class="btn btn-success" data-component="button">
+            <button id="input_2" name="submit" type="submit" value="submit" class="btn btn-success" data-component="button" onsubmit="guardando(this);">
               Guardar
             </button>
           </div>
@@ -412,7 +417,10 @@ $('.selectpicker.cliente').on('change', function(e){
         document.getElementById('formaDePago').value = formaDePago ; 
       })
 
-      
+$('#form_80705003129648').submit(function() {
+  document.getElementById('input_2').disabled=true;
+  document.getElementById('input_2').value='Guardando, por favor espere...';
+});      
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPpGUzmkPjLfYHzTTuDZ02jPNQGaKJBdU&libraries=places&callback=initAutocomplete" async defer></script>
